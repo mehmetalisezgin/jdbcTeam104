@@ -1,4 +1,3 @@
-import java.security.PublicKey;
 import java.sql.*;
 
 public class QueryOOP_3rdStep {
@@ -185,6 +184,118 @@ public class QueryOOP_3rdStep {
         }
         return data2.executeBatch() ;
     }
+//*********************************Practice JDBC***************************************************
+
+    public static ResultSet sumOfMathHours() {
+        try {
+            data = statementDataBase().executeQuery(DataTable_1stStep.sumOfMathHours);
+            while (data.next()) {
+                System.out.println(data.getString(1));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return data;
+    }
+
+    public static ResultSet productNameAndPrice() {
+        try {
+            data = statementDataBase().executeQuery(DataTable_1stStep.productNameAndPrice);
+            while (data.next()) {
+                System.out.println(data.getString(1)+ " " + data.getString(2));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return data;
+    }
+
+    public static ResultSet productNameAndPriceTrendYol() {
+        try {
+            data = statementDataBase().executeQuery(DataTable_1stStep.productNameAndPriceTrendYol);
+            while (data.next()) {
+                System.out.println(data.getString(1)+ " " + data.getString(2));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return data;
+    }
+
+    public static ResultSet productIDName() {
+        try {
+            data = statementDataBase().executeQuery(DataTable_1stStep.productIDName);
+            while (data.next()) {
+                System.out.println(data.getInt(1)+ " " + data.getString(2)+ " " + data.getString(3));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return data;
+    }
+    public static boolean increaseSalary(){
+        try {
+            statementDataBase().execute(DataTable_1stStep.increaseSalary) ;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        } return false ;
+    }
+
+    public static ResultSet lastVersionPersonnel() {
+        try {
+            data = statementDataBase().executeQuery(DataTable_1stStep.lastVersionPersonnel);
+            while (data.next()) {
+                System.out.println(data.getInt(1)+ " " + data.getString(2)+ " " + data.getDouble(3)
+                + " " + data.getString(4)+ " " + data.getString(5));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return data;
+    }
+
+    public static boolean createHospitalTable(){
+        try {
+            statementDataBase().execute(DataTable_1stStep.createHospitalTable) ;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        } return false ;
+    }
+    public static ResultSet ViewHospitalTable() {
+        try {
+            data = statementDataBase().executeQuery(DataTable_1stStep.viewHospitalTable);
+            while (data.next()) {
+                System.out.println(data.getInt(1)+ " " + data.getString(2)+ " " + data.getString(3)
+                        + " " + data.getString(4));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return data;
+    }
+
+    public static int[] addDataHospitalTable() throws SQLException {
+        try{
+            data2 = connectionDataBase().prepareStatement(DataTable_1stStep.hospitalDataAdding);
+            for(HospitalData each : DataTable_1stStep.hospitalDataList()){
+                data2.setInt(1,each.getId());
+                data2.setString(2,each.getHospital_name());
+                data2.setString(3,each.getCity());
+                data2.setString(4,each.getSituation());
+                data2.addBatch();// fix it all data and collect them and read them
+            }
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return data2.executeBatch() ;
+    }
+
+
 
 
 

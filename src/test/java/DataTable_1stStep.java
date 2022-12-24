@@ -110,4 +110,49 @@ public class DataTable_1stStep {
     }
     static String deviceTableAdding = "INSERT INTO device VALUES(?,?,?,?,?)" ;
 
+    //************************************** Practice JDBC **********************************************
+    //  verify the sum  of maths lesson is 60 hours from the school table (day02)
+
+/*    create table school(
+            id int UNIQUE,
+            nameOfTeacher varchar(30) NOT NULL,
+            lesson varchar(30),
+            working_hours_weekly int
+             );  */
+    static String sumOfMathHours = "SELECT SUM(working_hours_weekly) AS totalMathHours FROM school WHERE lesson='Maths'" ;
+
+    // -- TASK14 : View name of products with price between 30 and 100 (from products table)
+    static String productNameAndPrice = "SELECT Product_name,price FROM products WHERE price BETWEEN 30 AND 100" ;
+    // TASK15 : View name of products and price with company Between 'TrendYol' and 'Gipta' from products table
+    static String productNameAndPriceTrendYol = "SELECT Product_name,price FROM products Where company BETWEEN 'Gipta' AND 'TrendYol'" ;
+
+    // TASK19 :View name of Product_name with id is 11,12,13
+
+    static String productIDName = "SELECT product_id,price,product_name FROM products WHERE product_id IN (11,12,13)";
+
+   // increse 10% of salary from the personnel table
+    static String increaseSalary = "UPDATE personnel SET salary = salary + (salary * 10 /100)" ;
+    static String lastVersionPersonnel = "SELECT * FROM personnel" ;
+
+    // Create a table with name hospital and add 4 fields and data
+    static String createHospitalTable = "CREATE TABLE hospital"
+            + "( id int primary key,"
+            + " hospital_name varchar(20),"
+            + " city varchar(20),"
+            + " situation varchar(20))";
+    static String viewHospitalTable = "SELECT * FROM hospital" ;
+// to add data in the hospital table we have to create pojo class and list method
+    public static List<HospitalData> hospitalDataList(){
+        List<HospitalData> list = new ArrayList<>();
+        list.add(new HospitalData(1,"Medical","Tokat","private")) ;
+        list.add(new HospitalData(2,"Cevdet Aykan","Sivas","public")) ;
+        list.add(new HospitalData(3,"American Hospital","Istnabul","private")) ;
+        list.add(new HospitalData(4,"19 Mayis Hospital","Samsun","public")) ;
+        return  list;
+    }
+    static String hospitalDataAdding = "INSERT INTO hospital VALUES(?,?,?,?)" ;
+
+
+
+
 }
